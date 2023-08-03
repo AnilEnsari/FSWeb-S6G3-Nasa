@@ -14,7 +14,7 @@ const Dateinfo = (props) => {
     // console.warn("[ComponentDidUpdate] Greeting componenti yüklendi!");
   });
 
-  return <h1>Bu Fotoğrafın Çekilme Tarihi ... {props.date}</h1>;
+  return <h1>{props.date}</h1>;
 };
 
 export default Dateinfo;

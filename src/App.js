@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Dateinfo from "./Dateinfo";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Modal, ModalBody, Button, ModalHeader } from "reactstrap";
 
 // const sahteData = {
 //   date: "1997-01-21",
@@ -16,7 +18,6 @@ import axios from "axios";
 
 function App() {
   const [data, setData] = useState("");
-  const [showImg, setShowImg] = useState(false);
   const [showExplanation, setShowExplantion] = useState(false);
 
   useEffect(() => {
@@ -31,43 +32,72 @@ function App() {
 
   useEffect(() => {
     console.log("Use Effect Kullanıldı");
-  }, [showExplanation, showImg]);
+  }, [showExplanation]);
   if (data == "") return <div className="App">Sayfa Yükleniyor...</div>;
   return (
     <div className="App">
-      <Dateinfo date={data.date} />
+      <header class="headerclass">
+        <div class="boldandlogo">
+          <img
+            src="https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png"
+            alt="nasalogo"
+          />
+          <h2>Astronomy Pitcure of the Day</h2>
+        </div>
 
-      <h1> {data.title} </h1>
-
-      <button
-        onClick={() => {
-          setShowImg(!showImg);
-        }}
-      >
-        {showImg ? "RESİMİ GİZLE" : "RESİMİ GÖSTER"}
-      </button>
+        <div class="alar">
+          <a href="#">
+            <h3>About APOD</h3>
+          </a>
+          <a href="#">
+            <h3>Index</h3>
+          </a>
+          <a href="#">
+            <h3>Submissions</h3>
+          </a>
+          <a href="#">
+            <h3>Calendar</h3>
+          </a>
+          <a href="#">
+            <h3>Educiation</h3>
+          </a>
+          <a href="#">
+            <h3>Discuss</h3>
+          </a>
+        </div>
+      </header>
 
       <br />
       <br />
-      <showHideImg />
+      <div class="mainpic">{<img src={data.url} alt="PhotooftheDay" />}</div>
 
-      {showImg && <img src={data.url} />}
-
-      <br />
-      <br />
-
-      <button
+      <div class="maindiv">
+        <div class="copyright">
+          <h2>{data.copyright}</h2>
+        </div>
+        <div class="date">
+          <Dateinfo date={data.date} />
+        </div>
+      </div>
+      <Button
+        color={showExplanation ? "danger" : "success"}
         onClick={() => {
           setShowExplantion(!showExplanation);
         }}
       >
-        {showExplanation ? "AÇIKLAMAYI GİZLE" : "AÇIKLAMAYI GÖSTER"}
-      </button>
-
+        {showExplanation ? (
+          <h3>AÇIKLAMAYI GİZLE</h3>
+        ) : (
+          <h3>AÇIKLAMAYI GÖSTER</h3>
+        )}
+      </Button>
       <br />
       <br />
-
-      {showExplanation && <p>{data.explanation}</p>}
+      {showExplanation && (
+        <div class="explanation">
+          <p>{data.explanation}</p>{" "}
+        </div>
+      )}
     </div>
   );
 }
