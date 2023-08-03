@@ -53,6 +53,9 @@
   justify-content: space-evenly;
   align-items: center;
 }
+.alar a {
+  text-decoration: none;
+}
 .mainpic img {
   width: 100%;
   padding: 0rem 5rem;
