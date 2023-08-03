@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const Greeting = (props) => {
+const Dateinfo = (props) => {
   // console.log("props: ", props);
   // props?.logUser();
 
@@ -17,4 +17,4 @@ const Greeting = (props) => {
   return <h1>Bu Fotoğrafın Çekilme Tarihi ... {props.date}</h1>;
 };
 
-export default Greeting;
+export default Dateinfo;
